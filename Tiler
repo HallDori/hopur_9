@@ -1,0 +1,93 @@
+def main():
+    latitude = 1
+    longitude = 1
+    travel(latitude, longitude)
+    cmd = input("Direction: ").lower()
+    
+    while cmd == "n" or cmd == "s" or cmd == "e" or cmd == "w":
+        
+        latitude, longitude = movement(cmd,latitude, longitude)
+        travel(latitude, longitude)
+        
+        if longitude == 3 and latitude == 1:
+            print("Victory!")
+            break 
+        cmd = input("Direction: ").lower()
+
+
+def travel(latitude, longitude):
+    if longitude == 1 and latitude == 1:
+        print("You can travel: (N)orth.")
+
+    elif longitude == 1 and latitude == 2:
+        print("You can travel: (N)orth or (E)ast or (S)outh.")
+
+    elif longitude == 1 and latitude == 3:
+        print("You can travel: (E)ast or (S)outh.")
+
+    elif longitude == 2 and latitude == 2:
+        print("You can travel: (S)outh or (W)est.")
+
+    elif longitude == 2 and latitude == 1:
+        print("You can travel: (N)orth.")
+
+    elif longitude == 2 and latitude == 3:
+        print("You can travel: (E)ast or (W)est.")
+
+    elif longitude == 3 and latitude == 3:
+        print("You can travel: (S)outh or (W)est.")
+
+    elif longitude == 3 and latitude == 2:
+        print("You can travel: (N)orth or (S)outh.")
+    
+
+def movement(cmd: str, latitude, longitude):
+    
+    cmd = cmd.lower()
+    
+    if cmd =="n" and latitude != 3:
+        if latitude == 2 and longitude == 2:
+            print("Not a valid direction!")
+            return(latitude, longitude)
+        else:
+            return(latitude + 1, longitude)
+    
+    if cmd == "s" and latitude != 1:
+        if latitude == 3 and longitude == 2:
+            print ("Not a valid direction!")
+            return(latitude, longitude)
+        else:
+            return(latitude - 1, longitude)
+
+    if cmd == "e" and longitude != 3:
+        if latitude == 1 and longitude == 1:
+            print ("Not a valid direction!")
+            return(latitude, longitude)
+        elif latitude == 1 and longitude == 2:
+            print ("Not a valid direction!")
+            return(latitude, longitude)
+        elif  latitude == 2 and longitude == 2:
+            print ("Not a valid direction!")
+            return(latitude, longitude)
+        else:
+            return(latitude, longitude + 1)
+
+    if cmd == "w" and longitude != 1:
+        if latitude == 1 and longitude == 2:
+            print("Not a valid direction!")
+            return(latitude, longitude)
+        elif latitude == 2 and longitude == 3:
+            print("Not a valid direction!")
+            return(latitude, longitude)
+        else:
+            return(latitude, longitude - 1)
+    else:
+        print("Not a valid direction!")
+        return(latitude, longitude)
+   
+
+
+
+
+if __name__ == "__main__":
+    main()
